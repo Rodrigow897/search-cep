@@ -1,6 +1,6 @@
 import { router, useLocalSearchParams } from "expo-router";
 import { useEffect, useState } from "react";
-import { ActivityIndicator, Text, TouchableOpacity, View } from "react-native";
+import { ActivityIndicator, ImageBackground, Text, TouchableOpacity, View } from "react-native";
 import { styles } from "../../styles/styles";
 
 
@@ -57,7 +57,8 @@ export default function Result() {
   }
 
   return (
-    <View style={styles.container}>
+    <ImageBackground style={styles.container} source={require("../../../assets/images/cityBG.jpeg")}>
+    <View>
       {error ? (
         <Text style={{ color: "red" }}>{error}</Text>
       ) : adressData ? (
@@ -74,6 +75,7 @@ export default function Result() {
           <Text>Longitude: {adressData.lng}</Text>
           <Text>City IBGE: {adressData.city_ibge}</Text>
         </View>
+        
       ) : null}
         
       <View style={{ marginTop: 50 }}>
@@ -82,5 +84,6 @@ export default function Result() {
       </TouchableOpacity>
       </View>
     </View>
+    </ImageBackground>
   );
 }
