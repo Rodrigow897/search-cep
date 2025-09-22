@@ -64,5 +64,3 @@ elevation: 5,
     fontWeight: 'bold',
   },
 });
-
-module.exports = { styles };
