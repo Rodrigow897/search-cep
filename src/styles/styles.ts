@@ -17,6 +17,36 @@ export const styles = StyleSheet.create({
     height: 356,
   },
 
+  adressContainer: {
+  alignItems: "center",
+  gap: 10,
+  borderRadius: 20,
+  padding: 20,
+  width: "90%",
+  overflow: "hidden", 
+  backgroundColor: "rgba(255, 255, 255, 0.5)",
+
+  
+  shadowColor: "#000",
+  shadowOffset: { width: 0, height: 10 },
+  shadowOpacity: 0.3,
+  shadowRadius: 20,
+
+
+  elevation: 10,
+},
+   blurContainer: {
+    flex: 1, 
+    justifyContent: 'center',
+    alignItems: 'center',
+    ...StyleSheet.absoluteFillObject,
+    opacity: 0.8,
+  },
+  overlay: {
+    ...StyleSheet.absoluteFillObject,
+    opacity: 0.2,
+  },
+
   title: {
     fontSize: 20,
     fontWeight: 'bold',
@@ -63,4 +93,10 @@ elevation: 5,
     fontSize: 18,
     fontWeight: 'bold',
   },
+
+  textAdress: {
+    fontSize: 16,
+    color: '#000',
+    fontWeight: 500,
+  }
 });

@@ -1,6 +1,7 @@
+import { BlurView } from "expo-blur";
 import { router, useLocalSearchParams } from "expo-router";
-import { useEffect, useState } from "react";
-import { ActivityIndicator, ImageBackground, Text, TouchableOpacity, View } from "react-native";
+import React, { useEffect, useState } from "react";
+import { ActivityIndicator, Image, ImageBackground, Text, TouchableOpacity, View } from "react-native";
 import { styles } from "../../styles/styles";
 
 
@@ -57,23 +58,29 @@ export default function Result() {
   }
 
   return (
-    <ImageBackground style={styles.container} source={require("../../../assets/images/cityBG.jpeg")}>
-    <View>
+    <ImageBackground style={styles.container} source={require("../../../assets/images/cityBG.jpeg")}
+    resizeMode="cover">
+    <BlurView intensity={5} tint="light" style={styles.blurContainer}>
+         <Image
+        source={require("../../../assets/images/drops.png")} // vidro molhado transparente
+        style={styles.overlay}
+        resizeMode="cover"
+      />
       {error ? (
         <Text style={{ color: "red" }}>{error}</Text>
       ) : adressData ? (
-        <View style={{ alignItems: "center", gap: 10 }}>
-          <Text>CEP: {adressData.cep}</Text>
-          <Text>Address Type: {adressData.address_type}</Text>
-          <Text>Address Name: {adressData.address_name}</Text>
-          <Text>Address: {adressData.address}</Text>
-          <Text>District: {adressData.district}</Text>
-          <Text>City: {adressData.city}</Text>
-          <Text>State: {adressData.state}</Text>
-          <Text>DDD: {adressData.ddd}</Text>
-          <Text>Latitude: {adressData.lat}</Text>
-          <Text>Longitude: {adressData.lng}</Text>
-          <Text>City IBGE: {adressData.city_ibge}</Text>
+        <View style={styles.adressContainer}>
+          <Text style={styles.textAdress} >CEP: {adressData.cep}</Text>
+          <Text style={styles.textAdress} >Address Type: {adressData.address_type}</Text>
+          <Text style={styles.textAdress} >Address Name: {adressData.address_name}</Text>
+          <Text style={styles.textAdress} >Address: {adressData.address}</Text>
+          <Text style={styles.textAdress} >District: {adressData.district}</Text>
+          <Text style={styles.textAdress} >City: {adressData.city}</Text>
+          <Text style={styles.textAdress} >State: {adressData.state}</Text>
+          <Text style={styles.textAdress} >DDD: {adressData.ddd}</Text>
+          <Text style={styles.textAdress} >Latitude: {adressData.lat}</Text>
+          <Text style={styles.textAdress} >Longitude: {adressData.lng}</Text>
+          <Text style={styles.textAdress} >City IBGE: {adressData.city_ibge}</Text>
         </View>
         
       ) : null}
@@ -83,7 +90,7 @@ export default function Result() {
         <Text style={styles.buttonText}>Voltar</Text>
       </TouchableOpacity>
       </View>
-    </View>
+    </BlurView>
     </ImageBackground>
   );
 }
