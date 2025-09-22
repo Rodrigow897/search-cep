@@ -21,11 +21,12 @@ interface AdressData {
 export default function App() {
     const [cep, setCep] = useState('');
     const [adressData, setAdressData] = useState<AdressData | null>(null);
+    const [error, setError] = useState<string | null>(null);
 
     const fetchAdressData = async () => {
          if (cep.length < 8) {
       setError("Digite um CEP válido com 8 números.");
-      setEndereco(null); 
+      setAdressData(null); 
     }
 
     try {
@@ -34,14 +35,14 @@ export default function App() {
 
            if (data?.status === 400) {
         setError("CEP não encontrado.");
-        setEndereco(null);
+        setAdressData(null);
       } else {
-        setEndereco(data);
+        setAdressData(data);
         setError(null);
       }
     } catch (err) {
       setError("Erro ao buscar CEP.");
-      setEndereco(null);
+      setAdressData(null);
     }
   };
 
@@ -57,16 +58,38 @@ export default function App() {
             </View>
 
             <View style={styles.inputBox}>
-                <TextInput style={styles.input} placeholder="Ex.: 63100600" placeholderTextColor="#6F6969cc"></TextInput>
-                <TouchableOpacity style={styles.button}><Text style={styles.buttonText} >Search</Text></TouchableOpacity>
+                <TextInput style={styles.input}
+                keyboardType="numeric"
+                maxLength={8}
+                value={cep}
+                onChangeText={setCep}
+                placeholder="Ex.: 63100600" 
+                placeholderTextColor="#6F6969cc">
+                </TextInput>
+                <TouchableOpacity style={styles.button}
+                    onPress={fetchAdressData}>
+                    <Text style={styles.buttonText}>Search
+                    </Text>
+                </TouchableOpacity>
             </View>
+
+            {error ? <Text style={{ color: 'red', marginBottom: 20 }}>{error}</Text> : null}
+
+            {adressData && (
+                <View style={{ alignItems: 'center', gap: 10 }}>
+                    <Text>CEP: {adressData.cep}</Text>
+                    <Text>Address Type: {adressData.address_type}</Text>
+                    <Text>Address Name: {adressData.address_name}</Text>
+                    <Text>Address: {adressData.address}</Text>
+                    <Text>District: {adressData.district}</Text>
+                    <Text>City: {adressData.city}</Text>
+                    <Text>State: {adressData.state}</Text>
+                    <Text>DDD: {adressData.ddd}</Text>
+                    <Text>Latitude: {adressData.lat}</Text>
+                    <Text>Longitude: {adressData.lng}</Text>
+                    <Text>City IBGE: {adressData.city_ibge}</Text>
+                </View>
+            )}
         </View>
     )
 }
-
-function setError(arg0: string | null) {
-        throw new Error("Function not implemented.");
-    }
-    function setEndereco(arg0: null) {
-        throw new Error("Function not implemented.");
-    }
