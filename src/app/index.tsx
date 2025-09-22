@@ -1,7 +1,7 @@
 import { Image } from "expo-image";
+import { useState } from "react";
 import { Text, TextInput, TouchableOpacity, View } from "react-native";
 import { styles } from "../styles/styles";
-import { useState } from "react";
 
 interface AdressData {
   cep: string;
@@ -31,8 +31,19 @@ export default function App() {
     try {
       const response = await fetch(`https://cep.awesomeapi.com.br/json/${cep}`);
         const data = await response.json();
-      return;
+
+           if (data?.status === 400) {
+        setError("CEP não encontrado.");
+        setEndereco(null);
+      } else {
+        setEndereco(data);
+        setError(null);
+      }
+    } catch (err) {
+      setError("Erro ao buscar CEP.");
+      setEndereco(null);
     }
+  };
 
     return (
         <View style={styles.container}>
@@ -53,10 +64,9 @@ export default function App() {
     )
 }
 
-function setError(arg0: string) {
+function setError(arg0: string | null) {
         throw new Error("Function not implemented.");
     }
     function setEndereco(arg0: null) {
         throw new Error("Function not implemented.");
     }
-
