@@ -16,11 +16,7 @@ export const styles = StyleSheet.create({
     width: 286,
     height: 356,
   },
-  titlebox: {
-    alignItems: 'center',
-    gap: 20,
-    marginBottom: 50,
-  },
+
   title: {
     fontSize: 20,
     fontWeight: 'bold',
@@ -29,6 +25,11 @@ export const styles = StyleSheet.create({
     fontSize: 18,
     color: '#555',
     textAlign: 'center',
+  },
+  inputBox: {
+    alignItems: 'center',
+    gap: 30,
+    marginBottom: 50,
   },
   input: {
     width: 290,
@@ -51,6 +52,11 @@ elevation: 5,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 10,
+    shadowColor: "#23205fff",
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,
+    elevation: 5,
   },
   buttonText : {
     color: '#fff',
