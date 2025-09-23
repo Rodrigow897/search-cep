@@ -15,7 +15,7 @@ export default function Home() {
     // navega para result e passa o cep
     router.push({ pathname: "/adressData", params: { cep } });
   };
-
+  
   return (
     <View style={styles.container}>
       <View style={styles.header}>
