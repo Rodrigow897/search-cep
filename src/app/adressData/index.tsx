@@ -1,7 +1,6 @@
-import { BlurView } from "expo-blur";
 import { router, useLocalSearchParams } from "expo-router";
 import React, { useEffect, useState } from "react";
-import { ActivityIndicator, Image, ImageBackground, Text, TouchableOpacity, View } from "react-native";
+import { ActivityIndicator, Text, TouchableOpacity, View } from "react-native";
 import { styles } from "../../styles/styles";
 
 
@@ -58,21 +57,14 @@ export default function Result() {
   }
 
   return (
-    <ImageBackground style={styles.container} source={require("../../../assets/images/cityBG.jpeg")}
-    resizeMode="cover">
-    <BlurView intensity={5} tint="light" style={styles.blurContainer}>
-         <Image
-        source={require("../../../assets/images/drops.png")} // vidro molhado transparente
-        style={styles.overlay}
-        resizeMode="cover"
-      />
+    <View style={styles.container}>
       {error ? (
         <Text style={{ color: "red" }}>{error}</Text>
       ) : adressData ? (
-        <View style={styles.adressContainer}>
-          <Text style={styles.textAdress} >CEP: {adressData.cep}</Text>
+
+        <View style={styles.cardAdress}>
+          <Text style={styles.textAdress} >Zip code: {adressData.cep}</Text>
           <Text style={styles.textAdress} >Address Type: {adressData.address_type}</Text>
-          <Text style={styles.textAdress} >Address Name: {adressData.address_name}</Text>
           <Text style={styles.textAdress} >Address: {adressData.address}</Text>
           <Text style={styles.textAdress} >District: {adressData.district}</Text>
           <Text style={styles.textAdress} >City: {adressData.city}</Text>
@@ -85,12 +77,11 @@ export default function Result() {
         
       ) : null}
         
-      <View style={{ marginTop: 50 }}>
+      <View style={{marginTop: 50}}>
       <TouchableOpacity style={styles.button} onPress={() => router.back()}>
         <Text style={styles.buttonText}>Voltar</Text>
       </TouchableOpacity>
       </View>
-    </BlurView>
-    </ImageBackground>
+    </View>
   );
 }
