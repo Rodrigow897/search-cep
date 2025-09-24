@@ -1,3 +1,4 @@
+import { Image } from "expo-image";
 import { router, useLocalSearchParams } from "expo-router";
 import React, { useEffect, useState } from "react";
 import { ActivityIndicator, Text, TouchableOpacity, View } from "react-native";
@@ -63,6 +64,7 @@ export default function Result() {
       ) : adressData ? (
 
         <View style={styles.cardAdress}>
+          <Image style={{height: 200, width: 200}} source={require("../../../assets/images/adressLogo.svg")} />
           <Text style={styles.textAdress} >Zip code: {adressData.cep}</Text>
           <Text style={styles.textAdress} >Address Type: {adressData.address_type}</Text>
           <Text style={styles.textAdress} >Address: {adressData.address}</Text>
